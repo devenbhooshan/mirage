@@ -1,0 +1,58 @@
+/* NOTE: container div also specifies width and height (in head of demo) */
+div#wn { 
+    position:absolute; /* scroll area div must be positioned */
+    width:250px; 
+	height:400px; /* width and height required. adjust to suit */
+    overflow:hidden; /* required! */
+	}
+div#scrollbar {
+    position:absolute;
+    /* include following if you don't want scrollbar hidden when insufficient content for scrolling */
+    /* visibility:visible !important; */ 
+    width:11px; height:400px;
+    right:0; /* at right edge in container div */
+    font-size:1px; /* for ie cooperation */
+    }
+div#scrollbar .up {
+    background-image:url('../images/btn-up.gif');
+    background-repeat: no-repeat;
+    width:11px; height:11px; /* specify width and height of your image */
+    position:absolute; top:0;
+    }
+div#scrollbar .down {
+    background-image:url('../images/btn-dn.gif');
+    background-repeat: no-repeat;
+    width:11px; height:11px; /* specify width and height of your image */
+    position:absolute; bottom:0;
+    }
+div#scrollbar .track {
+    position:absolute; /* track must be positioned */
+    left:0;
+    top:12px; /* equal to height of .up image plus optional 1px for gap */
+    width:11px; 
+    height:380px; /* height of scrollbar minus 2 X image height minus optional 2px for gap */
+    background-color:#336;
+    }
+div#scrollbar .dragBar {
+    position:absolute; /* dragBar must be positioned */
+    background-color:#ceced6; /* can use background-image if you like */
+    width:9px; 
+    height:20px; /* code auto-sizes */
+    /* height:20px !important;  use !important to prevent code from sizing dragBar according to amount of content */
+    top:1px; left:1px; /* optional, small gap between track and dragBar */
+    }
+
+/* for clutzy draggers */
+div#scrollbar {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    }
+    
+/* safari, chrome, opera have very prominent outline by default 
+   opera shows outline movement with scrolling and won't allow none
+   set to suit your page design
+*/
+div#wn:focus, div#scrollbar:focus, div#scrollbar .track:focus, div#scrollbar .dragBar:focus {
+    outline:1px dotted #eee;
+    }
+    
