@@ -1,0 +1,2 @@
+Mirage is the lite weight chat cliet. It uses AJAX to get messages from database. Back end is in PHP.
+Authentication is also provided.
