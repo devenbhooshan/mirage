@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 ?>
 
@@ -8,6 +7,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
+
 <?php
 if(isset($_SESSION['SESS_MEMBER_ID'])) echo $_SESSION['SESS_MEMBER_NAME'];
 else echo "Mirage";
@@ -45,13 +45,18 @@ else echo "Mirage";
   <div id="chat_area">
         <?php
 		     
-             if(isset($_SESSION['SESS_MEMBER_NAME'])&&array_key_exists('x',$_GET)){
-        
+             if(isset($_SESSION['SESS_MEMBER_NAME'])&&array_key_exists('x',$_GET)&&$_GET['x']!=$_SESSION['SESS_MEMBER_ID']){
+				 
+				 $id=$_GET['x'];
+				 $query_for_checking_the_existence_of_id=mysql_query("select first_name from user where id_no='$id'");
+				 
+        		//if(mysql_num_rows($query_for_checking_the_existence_of_id)>0){
         		echo "<div id=\"chat\"  class=\"chat\"></div>";
 				echo "<form id=\"adduserform\" name=\"adduserform\" action='javascript:addpost()' >
             	<input type=\"text\" id=\"name\" name=\"name\" class=\"textarea\" style=\"margin-top:5%\"  />
             	</form><br  />";
-				 }
+				// }
+			 }
 		?>
  
    </div><!--Chat Area Ends Here-->

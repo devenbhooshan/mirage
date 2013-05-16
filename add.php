@@ -1,8 +1,9 @@
 <?php
 session_start();
+include("core_functions.php");
 require("database.php");
 $id;
-$message=$_POST['name'];
+$message=text_to_html($_POST['name']);
 if(array_key_exists('x',$_GET)){
 				$id=$_GET['x'];
 }

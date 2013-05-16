@@ -10,6 +10,13 @@ $mid=$_SESSION['SESS_MEMBER_ID'];
 
 if(array_key_exists('x',$_GET)){
 				$id=$_GET['x'];
+$query_for_name=mysql_query("select first_name,last_name from user where id_no='$id'");
+if(mysql_num_rows($query_for_name)>0){
+	$row_for_name=mysql_fetch_array($query_for_name);
+	$user_name=$row_for_name['first_name']." ".$row_for_name['last_name'];
+	echo "<h3 ><font color='#FFF'> ".$user_name." & Your conversation:</font></h3>";	
+	
+}
 				
 					$query_for_changing_the_notification_status=mysql_query("update chat_notification_list set status='1' where m_by='$id' and m_to='$mid'");
 				$query="select * from chat where (m_to='$id' AND m_by='$mid') or (m_to='$mid' AND m_by='$id') order by  time desc";
@@ -28,13 +35,17 @@ if(mysql_num_rows($query_for_name)>0){
 	$name=$names['first_name'];
 	echo "<tr style='font-size:14px;color:white '><td>&nbsp;&nbsp;".$name."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
 	
-}
+
 echo "<td style='font-size:20px;color:silver '>".$row['message']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";	
 
 echo "<td style='font-size:12px;color:silver '>".$row['time']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>";
-
+}
 	
-}}
+}
+}
+else {
+echo "<h3><font color='#FFF'>No chat so far<br>Send a message</font></h3>";	
+}
 }
 ?>
 </tbody>

@@ -1,4 +1,14 @@
 <?php
+//text_to_html function converts text messages to html.
+function text_to_html($text){
+		//$special_characters=array('<','>',' ','@','&','/','(',')','~','!','#','$','%','^','*','_','-','+','=','{','}','[',']',':',';','"','','?','/','`');
+	$special_characters=array('<','>',' ','@');
+	$html_codes=array("&lt;","&gt;","&nbsp;","@");
+	$html=str_replace($special_characters,$html_codes,$text);
+
+	return  $html;
+}
+//test_to_html function ends here.
 
 //these below functions gives the relationship between two ids.
 function check_status($id1,$id2){
