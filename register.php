@@ -34,7 +34,7 @@ $email=mysql_real_escape_string($_POST['email']);
 $password=mysql_real_escape_string($_POST['password']);
 $password_confirmation=mysql_real_escape_string($_POST['password_confirmation']);
 
-	$query="insert into user (id_no,first_name,last_name,email,password,no_of_friends,status,confirmation) values ('','$first_name','$last_name','$email','$password','0','0','0')";
+	$query="insert into user (id_no,first_name,last_name,email,password,confirmation) values ('','$first_name','$last_name','$email','$password','0')";
 $result=mysql_query($query);
 if($result){
 	//header("location:success.php");
