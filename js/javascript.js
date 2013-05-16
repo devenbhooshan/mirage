@@ -1,5 +1,5 @@
 // JavaScript Document
-var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
+
 
 
  function getUrlVars()
@@ -58,5 +58,27 @@ if (!timer_is_on4)
   {
   timer_is_on4=1;
   timer1();
+  }
+}
+
+var c5=0;
+var t5;
+var timer_is_on5=0;
+
+function timer2()
+{
+
+$.get('chat_notification.php', function(data){
+$('#chat_notifications').html(data);			
+});
+t4=setTimeout("timer2()",1000);
+}
+
+function startchatnotitimer()
+{
+if (!timer_is_on5)
+  {
+  timer_is_on5=1;
+  timer2();
   }
 }

@@ -1,5 +1,6 @@
 <?php
 include("session_expire.php");
+	 session_start();
 ?>
 
 
@@ -7,7 +8,15 @@ include("session_expire.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Mirage</title>
+<title>
+<?php
+if(isset($_SESSION['SESS_MEMBER_ID'])){
+echo $_SESSION['SESS_MEMBER_NAME'];
+}
+else echo "Mirage";
+?>
+
+</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"  />
 <script src="SpryAssets/SpryCollapsiblePanel.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" />
@@ -29,9 +38,11 @@ alert("Session Expired");
 }
 
 
-            function adduser()
+            function addpost()
             {
+				var val=document.getElementById("name").value;
 				
+				if(val!='') {
                 var data=$("#adduserform").serialize();
                 $.ajax({
                     type: "POST",
@@ -39,22 +50,31 @@ alert("Session Expired");
                     data: data,
                     dataType: "html",
                 });
+				document.getElementById("name").value='';
+				}
+				
             }
         </script>
         
         
 </head>
 <body bgcolor="#000000">
-<div id="CollapsiblePanel1" class="CollapsiblePanel" style="display:none">
-  <div class="CollapsiblePanelTab" tabindex="0">New Messages</div>
-  <div class="CollapsiblePanelContent">
+<?php
+
+
+
+if(isset($_SESSION['SESS_MEMBER_ID'])){
+
+	echo "<div id='chat_notifications'></div>";
+//	include("chat_notification.php");
+  }?>
   
   </div>
 
 </div>
 <div id="header" >
      <?php     
-	 session_start();
+
 	 
 	 if(isset($_GET['error']))
 	echo "<h3>Email_id/Password Incorrect</h3>";
@@ -81,12 +101,12 @@ alert("Session Expired");
         
         		echo "<div id=\"chat\"  class=\"chat\"></div>";
 
-    	echo "<form id=\"adduserform\" name=\"adduserform\" action='javascript:void()' >
+    	echo "<form id=\"adduserform\" name=\"adduserform\" action='javascript:addpost()' >
             
                 <input type=\"text\" id=\"name\" name=\"name\" class=\"textarea\" style=\"margin-top:5%\"  />
             
         </form><br  />
-        <button onclick=\"javascript:adduser();\" id=\"newUser\"  style=\"margin-left:30%\">Send</button> ";
+         ";
 			 }
 		?>
  
@@ -174,6 +194,7 @@ doTimer2();
 
 startTimer();
 startTimer1();
+startchatnotitimer();
 var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
 </script>
 
