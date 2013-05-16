@@ -1,48 +1,6 @@
 // JavaScript Document
+var CollapsiblePanel1 = new Spry.Widget.CollapsiblePanel("CollapsiblePanel1");
 
-var url = window.location.search;
-x=0;
-if(window.location.search){
-if (url.match("x").length > 0) {
-	x=getUrlVars();
-}
-else if(url.match("session_expire").length>0){
-alert("Session Expired");
-	
-}
-}
-
-
-function addpost()
-  {
-	var val=document.getElementById("name").value;
-	if(val!='') {
-    var data=$("#adduserform").serialize();
-                $.ajax({
-                    type: "POST",
-                    url: "add.php?x="+x[x[0]],
-                    data: data,
-                    dataType: "html",
-                });
-	document.getElementById("name").value='';
-				}
-				
-            }
-
-
-
-
-function request_send_accept_response(id1,id2,response){
-	//alert(id1+" "+id2+" "+response);
-	 $.ajax({
-                    type: "GET",
-                    url: "request_send_accept_response.php?id1="+id1+"&id2="+id2+"&response="+response,
-                    
-                });
-				
-				
-	
-}
 
  function getUrlVars()
 {
@@ -100,27 +58,5 @@ if (!timer_is_on4)
   {
   timer_is_on4=1;
   timer1();
-  }
-}
-
-var c5=0;
-var t5;
-var timer_is_on5=0;
-
-function timer2()
-{
-
-$.get('chat_notification.php', function(data){
-$('#chat_notifications').html(data);			
-});
-t4=setTimeout("timer2()",1000);
-}
-
-function startchatnotitimer()
-{
-if (!timer_is_on5)
-  {
-  timer_is_on5=1;
-  timer2();
   }
 }

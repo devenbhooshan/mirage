@@ -10,8 +10,6 @@ $mid=$_SESSION['SESS_MEMBER_ID'];
 
 if(array_key_exists('x',$_GET)){
 				$id=$_GET['x'];
-				
-					$query_for_changing_the_notification_status=mysql_query("update chat_notification_list set status='1' where m_by='$id' and m_to='$mid'");
 				$query="select * from chat where (m_to='$id' AND m_by='$mid') or (m_to='$mid' AND m_by='$id') order by  time desc";
 				$result=mysql_query($query);
 
