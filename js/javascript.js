@@ -1,6 +1,48 @@
 // JavaScript Document
 
+var url = window.location.search;
+x=0;
+if(window.location.search){
+if (url.match("x").length > 0) {
+	x=getUrlVars();
+}
+else if(url.match("session_expire").length>0){
+alert("Session Expired");
+	
+}
+}
 
+
+function addpost()
+  {
+	var val=document.getElementById("name").value;
+	if(val!='') {
+    var data=$("#adduserform").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "add.php?x="+x[x[0]],
+                    data: data,
+                    dataType: "html",
+                });
+	document.getElementById("name").value='';
+				}
+				
+            }
+
+
+
+
+function request_send_accept_response(id1,id2,response){
+	//alert(id1+" "+id2+" "+response);
+	 $.ajax({
+                    type: "GET",
+                    url: "request_send_accept_response.php?id1="+id1+"&id2="+id2+"&response="+response,
+                    
+                });
+				
+				
+	
+}
 
  function getUrlVars()
 {

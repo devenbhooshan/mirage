@@ -32,7 +32,7 @@ if(mysql_num_rows($query_for_chat_messages)>0){
 			$row_for_name=mysql_fetch_array($query_for_name);
 			$name=$row_for_name['first_name']." ".$row_for_name['last_name'];
 		}
-		echo "<a href='index.php?x=".$friend_id."'><p><font size='+1' color='white'>".$name."</a></font><br>".$message_sender."&nbsp;&nbsp;&nbsp;".$message."<p>";
+		echo "<a href='index.php?x=".$friend_id."'><p><font size='+1' color='white'>".$name."</a></font><br>".$message_sender."&nbsp;&nbsp;&nbsp;".$message."</p>";
 		
 	}
 	}
