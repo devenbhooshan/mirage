@@ -23,5 +23,8 @@ echo "<a href='index.php?x=".$m_by."'><p><font size='+1' color='white'>".$name."
 	}
 	
 }
+echo   "</div>
+
+</div>";
 
 ?>

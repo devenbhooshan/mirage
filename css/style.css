@@ -1,3 +1,8 @@
+body{
+	background-color:#000;
+	
+	
+}
 #header{
 	text-align:center;
 	height:40px;
@@ -23,13 +28,13 @@ a{
 	font-size:15px;
 	color:#FFF;
 }
-#side_panel{
+#right_panel{
 	border:double;
 	position:absolute;
 	margin-top:2%;
-	margin-left:80%;
-	width:15%;
-	height:60%;
+	margin-left:78%;
+	width:20%;
+	height:100%;
 	background-color:#666;
 	margin-right:2%;
 }
@@ -51,7 +56,7 @@ a{
 	border-color:#CCC;
 	position:absolute;
 	margin-top:2%;
-	margin-left:25%;
+	margin-left:24%;
 background-color:#666;
 	width:50%;
 
