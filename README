@@ -1,2 +1,1 @@
-Mirage is the lite weight chat cliet. It uses AJAX to get messages from database. Back end is in PHP.
-Authentication is also provided.
+Mirage is the lite weight social network where you can make friends and can chat with them. It uses AJAX Polling for notifications.
