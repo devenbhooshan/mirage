@@ -52,4 +52,31 @@ function return_status($id1,$id2){
 
 //relationship function ended
 
+
+// calulate time past of messages @author Jinank Jain
+function timer($time_in_sec){
+	$ntime = time();
+		$diff = ($ntime-$time_in_sec);
+		if(($diff)>=0 && $diff<=59){
+			
+			$pass = $diff." seconds ago";
+			return ($pass);
+						}
+		else if(($diff)>=60 && $diff<3600){
+			$diff = floor(($diff)/60);
+			$pass = $diff." minutes ago";
+			return ($pass);
+						}
+		else if(($diff)>=3600 && $diff<3600*24){
+			$diff = floor((($diff)/60)/60);
+			$pass = $diff." hours ago";
+			return ($pass);
+						}
+		else if(($diff)>=3600*24 ){
+			$diff = floor((((($diff)/60)/60)/24));
+			$pass = $diff." days ago";
+			return ($pass);
+						}
+	}
+
 ?>

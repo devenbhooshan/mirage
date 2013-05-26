@@ -6,6 +6,7 @@
 <?php
 session_start();
 include("database.php");
+include("core_functions.php");
 $mid=$_SESSION['SESS_MEMBER_ID'];
 
 if(array_key_exists('x',$_GET)){
@@ -37,8 +38,8 @@ if(mysql_num_rows($query_for_name)>0){
 	
 
 echo "<td style='font-size:20px;color:silver '>".$row['message']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";	
-
-echo "<td style='font-size:12px;color:silver '>".$row['time']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>";
+$newtime = timer($row['time']);
+echo "<td style='font-size:12px;color:silver '>".$newtime."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>";
 }
 	
 }
