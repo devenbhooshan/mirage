@@ -18,12 +18,15 @@ if(mysql_num_rows($query_for_name)>0){
 	echo "<h3 ><font color='#FFF'> ".$user_name." & Your conversation:</font></h3>";	
 	
 }
+$query_for_time = "select time from chat where (m_to='$id' AND m_by='$mid') or (m_to='$mid' AND m_by='$id') order by  time desc";
+$query_for_last_time = mysql_query($query_for_time);
+$info = mysql_fetch_array($query_for_last_time);
+$newtime  = timer($info['time']);
 				
 					$query_for_changing_the_notification_status=mysql_query("update chat_notification_list set status='1' where m_by='$id' and m_to='$mid'");
 				$query="select * from chat where (m_to='$id' AND m_by='$mid') or (m_to='$mid' AND m_by='$id') order by  time desc";
 				$result=mysql_query($query);
-
-			
+$p = 0;
 if(mysql_num_rows($result)>0){
 
 while($row=mysql_fetch_array($result)){
@@ -38,11 +41,12 @@ if(mysql_num_rows($query_for_name)>0){
 	
 
 echo "<td style='font-size:20px;color:silver '>".$row['message']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";	
-$newtime = timer($row['time']);
+if($p == 0){
 echo "<td style='font-size:12px;color:silver '>".$newtime."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>";
+$p = 1;
 }
+}}
 	
-}
 }
 else {
 echo "<h3><font color='#FFF'>No chat so far<br>Send a message</font></h3>";	
