@@ -65,6 +65,7 @@ else echo "Mirage";
 		
 		if(isset($_SESSION['SESS_MEMBER_ID']))	
 		echo "<div id='right_panel'>
+						<div id='online_friend_list'></div>
 						<div id='friend_list'></div>
 						<div id='friend_request_list'></div>
 						<div id='friend_suggestion_list'></div>

@@ -167,6 +167,12 @@ $('#friend_suggestion_list').html(data);
 });
 
 
+$.get('check_online.php', function(data){
+$('#online_friend_list').html(data);
+
+});
+
+
 setTimeout("timedCount2()",1000);
 }
 
