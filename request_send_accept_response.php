@@ -21,6 +21,8 @@ else if($response==3){
 else if($response==4){
 	// Send the friend request 
 	$time=time();
+	$query_for_cheking_the_previous_request=mysql_query("select id from friend_list where m_by='$id1' and m_to='$id2'");
+	if(mysql_num_rows($query_for_cheking_the_previous_request)==0)
 	$query_for_sending_the_friend_request=mysql_query("insert into friend_list(id,m_by,m_to,status,send_time)values('','$id1','$id2','0','$time')");
 	//echo "insert into friend_list(id,m_by,m_to,status,send_time)values('','$id1','$id2','0','$time')";
 }
