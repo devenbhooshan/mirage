@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('core_functions.php');
+require('database.php');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -41,6 +43,69 @@ else echo "Mirage";
 
 <!--Main Starts Here-->
 <div id="main">
+
+<!--Post area starts here-->
+<div id="post_area">
+<?php
+if(isset($_SESSION['SESS_MEMBER_ID'])&& !array_key_exists('x',$_GET)){
+		     
+        
+     echo '<form id="postcomment" name = "postcomment" action="javascript:postcomment()">
+     <input type ="text" name="post" id="post" class="postarea" style="margin-top:1%;margin-bottom:1%" />
+     </form>' ;
+}
+
+?>
+<?php
+$query = "SELECT * FROM friend_list";
+$query_for_checking_friend_status = mysql_query($query);
+$query = "SELECT * FROM comment";
+$query_for_getting_messages = mysql_query($query);
+$array_containing_friend_status = mysql_fetch_array($query_for_checking_friend_status);
+
+
+//$array_containing_messages = mysql_fetch_array($query_for_getting_messages);
+
+while($array_containing_messages = mysql_fetch_array($query_for_getting_messages)){
+if(isset($_SESSION['SESS_MEMBER_ID'])&&isset($array_containing_messages['m_by'])){
+	$a = $array_containing_messages['m_by'];
+	$b = $_SESSION['SESS_MEMBER_ID'];
+	$query = "SELECT * FROM friend_list WHERE m_by = '$a' && m_to = '$b'";
+	$query_for_checking = mysql_query($query);
+	$array_status = mysql_fetch_array($query_for_checking);
+	$a1 = $array_containing_messages['m_by'];
+	$b1 = $_SESSION['SESS_MEMBER_ID'];
+	$query1 = "SELECT * FROM friend_list WHERE m_by = '$b' && m_to = '$a'";
+	$query_for_checking1 = mysql_query($query1);
+	$array_status1 = mysql_fetch_array($query_for_checking1);
+
+	if($array_status['status']==1){
+		
+		echo"{$array_containing_messages['message']}";
+		echo '<form>
+		<input type= "text" name="commentor_box" id="commentor_box">		</form>';
+		}
+	if($array_status1['status']==1){
+		
+		echo"{$array_containing_messages['message']}";
+		echo '<form>
+		<input type= "text" name="commentor_box" id="commentor_box">		</form>';
+
+		}
+		
+}
+if($_SESSION['SESS_MEMBER_ID']==$array_containing_messages['m_by']){
+	
+	echo "{$array_containing_messages['message']}";
+	echo '<form>
+		<input type= "text" name="commentor_box" id="commentor_box">		</form>';
+
+	}
+}
+?>
+</div>
+
+<!--Post area ends here-->
 <!--Chat Area Starts Here-->	
   <div id="chat_area">
         <?php
@@ -65,7 +130,6 @@ else echo "Mirage";
 		
 		if(isset($_SESSION['SESS_MEMBER_ID']))	
 		echo "<div id='right_panel'>
-						<div id='online_friend_list'></div>
 						<div id='friend_list'></div>
 						<div id='friend_request_list'></div>
 						<div id='friend_suggestion_list'></div>
@@ -100,7 +164,7 @@ doTimer();// check_new chat timer
 }
 }
 
-//startTimer();//session_expire
+startTimer();//session_expire
 startTimer1();//chatlist timer
 doTimer2();// friends_suggestion_list
 startchatnotitimer();//chat notification timer
