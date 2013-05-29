@@ -29,6 +29,53 @@ function addpost()
 				
             }
 
+function postcomment()
+  {
+	var val=document.getElementById("post").value;
+	var id=-1;
+	if(window.location.search){
+if (url.match("x").length > 0) {
+id=x[x[0]];
+}
+
+}
+
+	if(val!='') {
+    var data=$("#postcomment").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "addpost.php?x="+id,
+                    data: data,
+                    dataType: "html",
+                });
+	document.getElementById("post").value='';
+				}
+				
+            }
+			
+function comment()
+  {
+	var val=document.getElementById("commentor_box").value;
+	var id=-1;
+	if(window.location.search){
+if (url.match("x").length > 0) {
+id=x[x[0]];
+}
+
+}
+
+	if(val!='') {
+    var data=$("#comment_box").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "addpost.php?x="+id,
+                    data: data,
+                    dataType: "html",
+                });
+	document.getElementById("commentor_box").value='';
+				}
+				
+            }
 
 
 
@@ -163,12 +210,6 @@ $('#friend_request_list').html(data);
 });
 $.get('friend_suggestion.php', function(data){
 $('#friend_suggestion_list').html(data);
-
-});
-
-
-$.get('check_online.php', function(data){
-$('#online_friend_list').html(data);
 
 });
 
