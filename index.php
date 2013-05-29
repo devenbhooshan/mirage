@@ -51,7 +51,7 @@ if(isset($_SESSION['SESS_MEMBER_ID'])&& !array_key_exists('x',$_GET)){
 		     
         
      echo '<form id="postcomment" name = "postcomment" action="javascript:postcomment()">
-     <input type ="text" name="post" id="post" class="postarea" style="margin-top:1%;margin-bottom:1%" />
+     <input type ="text" name="post" id="post" class="postarea" style="margin-top:1%;margin-left:1%;margin-bottom:1%" />
      </form>' ;
 }
 

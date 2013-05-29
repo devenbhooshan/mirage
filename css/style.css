@@ -86,3 +86,17 @@ background-color:#666;
 	
 	
 }
+#post_area{
+	border:double;
+	border-color:#CCC;
+	position:absolute;
+	margin-top:2%;
+	margin-left:24%;
+background-color:#666;
+	width:50%;	
+}
+.postarea{
+	height:40%;
+	width:95%;
+	
+	}
